@@ -1,10 +1,11 @@
 from datetime import date
 
+import pytest
 from pytest import fixture
 
 from module.cars.domain.entity import Car
 from module.owners.domain.entity import Owner
-from tests.module.domain.owner_entity_test import owner_entity_data
+from utils.constants import ColorCar, ModelCar
 
 
 @fixture
@@ -12,8 +13,8 @@ def car_data():
     return {
         "id": 1,
         "name": "Pytest",
-        "color": "55555555555",
-        "model": "blue",
+        "color": ColorCar.BLUE.value,
+        "model": ModelCar.HATCH.value,
         "owner": Owner(
             id=1,
             name="Pytest",
@@ -23,7 +24,7 @@ def car_data():
     }
 
 
-def test_entity_owner(car_data):
+def test_entity_car(car_data):
     data = car_data
     car_entity = Car(**data)
 
@@ -32,3 +33,18 @@ def test_entity_owner(car_data):
     assert car_entity.color == data.get("color")
     assert car_entity.model == data.get("model")
     assert car_entity.owner == data.get("owner")
+
+
+def test_entitfy_car_color_no_register(car_data):
+    data = car_data
+    data['color'] = 'Black'
+    with pytest.raises(ValueError):
+        Car(**data)
+
+
+def test_entitfy_car_model_no_register(car_data):
+    data = car_data
+    data['model'] = 'SUV'
+    with pytest.raises(ValueError):
+        Car(**data)
+
