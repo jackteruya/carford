@@ -1,0 +1,13 @@
+version: "3"
+services:
+    db-carford:
+        image: postgres:14-alpine
+        environment:
+            POSTGRES_PASSWORD: postgres
+            POSTGRES_DB: db
+        ports:
+            - 5432:5432
+        volumes:
+            - database-carford:/var/lib/postgresql/data
+volumes:
+    database-carford:
