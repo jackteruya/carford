@@ -16,6 +16,7 @@ psycopg2==2.9.5
 pydantic==1.10.4
 pyrsistent==0.19.3
 pytest==7.2.1
+python-dotenv==0.21.1
 pytz==2022.7.1
 SQLAlchemy==2.0.2
 tomli==2.0.1
