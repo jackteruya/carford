@@ -4,7 +4,7 @@ from flask_restx import Api
 from werkzeug.middleware.proxy_fix import ProxyFix
 
 from application.rest.owners.owner_create import api_owner_create
-from application.rest.owners.owner_get import owner_get_namespace
+from application.rest.owners.owner_get import api_owner_get
 
 
 class ServeApplication:
@@ -21,7 +21,7 @@ class ServeApplication:
             doc="/docs",
         )
 
-        api.add_namespace(owner_get_namespace)
+        api.add_namespace(api_owner_get)
         api.add_namespace(api_owner_create)
         app.register_blueprint(self._blueprint)
 
