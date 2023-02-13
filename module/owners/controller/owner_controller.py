@@ -10,5 +10,6 @@ class OwnerController:
         return OwnerUseCase(OwnerRepository()).get_owner_by_id(id)
     
     @staticmethod
-    def create_owner(data: OwnerCreateRequest):
+    def create_owner(data: dict):
+        data = OwnerCreateRequest(**data)
         return OwnerUseCase(OwnerRepository()).create_owner(data)
