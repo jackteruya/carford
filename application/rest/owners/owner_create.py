@@ -3,15 +3,28 @@ import json
 from flask import Response
 from flask_restx import Namespace, Resource, fields
 from flask_restx._http import HTTPStatus
-from marshmallow import ValidationError
+from pydantic import ValidationError
 
-from application.rest.cars.car_create import resource_fields
-from application.rest.owners.schema.owner import OwnerCreateRequest, response_fields
+from application.rest.owners.schema.owner import OwnerCreateRequest
 from application.rest.status import STATUS_CODES
 from module.owners.controller.owner_controller import OwnerController
 from module.owners.serializers.owner import OwnerJsonEncoder
 
 api_owner_create = Namespace("owner", description="Endpoints to get tickets")
+
+
+resource_fields = api_owner_create.model('Owner', {
+    'name': fields.String,
+    'document': fields.String,
+    'date_of_birth': fields.Date,
+})
+
+response_fields = api_owner_create.model('Owner response', {
+    'id': fields.Integer,
+    'name': fields.String,
+    'document': fields.String,
+    'date_of_birth': fields.Date,
+})
 
 
 @api_owner_create.route('/', methods=['POST'])
