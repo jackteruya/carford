@@ -13,7 +13,7 @@ class DBConnectionHandler:
     """Sqlalchemy database connection"""
 
     def __init__(self):
-        self.__connection_string = f"{os.getenv('DB_URL')}"
+        self.__connection_string = f"{os.getenv('DB_URL')}" if os.getenv('DB_URL') else 'sqlite:///backend_test.db'
         self.session = None
 
     def get_engine(self):
