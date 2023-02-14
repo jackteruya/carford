@@ -4,7 +4,7 @@ services:
         build:
             context: .
             dockerfile: ./infra/Dockerfile
-        command: sh -c "gunicorn --bind 0.0.0.0:8000 application.server:app"
+        command: sh -c "alembic upgrade head; gunicorn --bind 0.0.0.0:8000 application.server:app"
         depends_on:
             - db-carford
         volumes:
