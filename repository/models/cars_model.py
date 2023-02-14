@@ -12,8 +12,8 @@ class Cars(Base):
 
     id = Column(Integer, primary_key=True, name='id', unique=True, index=True)
     name = Column(String(64), name='name', nullable=False)
-    color = Column(Enum(ColorCar), name='color', nullable=False)
-    model = Column(Enum(ModelCar), name='model', nullable=False)
+    color = Column(String(64), name='color', nullable=False)
+    model = Column(String(64), name='model', nullable=False)
     owner_id = Column(Integer, ForeignKey("onwers.id"), name='owner_id', nullable=False)
     owner = relationship("Owners")
 

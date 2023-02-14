@@ -29,8 +29,8 @@ def upgrade() -> None:
     op.create_table('cars',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=64), nullable=False),
-    sa.Column('color', sa.Enum('BLUE', 'GRAY', 'YELLOW', name='colorcar'), nullable=False),
-    sa.Column('model', sa.Enum('CONVERTIBLE', 'HATCH', 'SEDAN', name='modelcar'), nullable=False),
+    sa.Column('color', sa.String(length=64), nullable=False),
+    sa.Column('model', sa.String(length=64), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['owner_id'], ['onwers.id'], ),
     sa.PrimaryKeyConstraint('id')
